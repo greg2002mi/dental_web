@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load i18n %}
+	{% load static %}
+	<title>Web blog</title>
+	<!-- Standard -->
+	<link rel="shortcut icon" href="{% static 'img/ficon.png' %}">
+	<!-- Latest Bootstrap min CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+	<!-- latest fonts awesome -->
+	<link rel="stylesheet" href="{% static 'font/css/font-awesome.min.css' %}" type="text/css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="{% static 'css/style4.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/animate.min.css' %}" type="text/css">
+	<!--  baguetteBox -->
+	<link rel="stylesheet" href="{% static 'css/baguetteBox.css' %}">
+	<!-- Owl Carousel Assets -->
+	<link href="{% static 'owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+	<link href="{% static 'owl-carousel/owl.theme.css' %}" rel="stylesheet">
+
+	{% block head_js %}{% endblock %}
+</head>
+
+<body>
+	<!-- Loading page-->
+	<div id="preloader" class="loader-wrapper">
+		<div id="loading" class="loader"></div>
+	</div>
+	<!--  nav  -->
+	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">Unico </a> </div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li> <a class="page-scroll" href="#">Home</a> </li>
+					<li> <a class="page-scroll" href="#">About</a> </li>
+					<li> <a class="page-scroll" href="#">Our Team</a> </li>
+					<li> <a class="page-scroll" href="#">Price</a> </li>
+					<li> <a class="page-scroll" href="#">Screenshot</a> </li>
+					<li> <a class="page-scroll" href="#">Testimonials</a> </li>
+					<li> <a class="page-scroll" href="#">Contact</a> </li>
+					<li> <a href="#" class="fac"><i class="fa fa-facebook"></i></a> </li>
+					<li><a href="#" class="twi"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#" class="goo"><i class="fa fa-google-plus"></i></a></li>
+					<li><a href="#" class="behance"><i class="fa fa-github" aria-hidden="true"></i></a> </li>
+				</ul>
+			</div>
+			<!-- navbar-collapse  -->
+		</div>
+	</nav>
+	<!-- START HEARDER SECTION -->
+	<header id="home" class="header">
+		<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+			<!-- .home-slider -->
+			<div class="carousel-inner">
+				<div class="item active" style="background-image: url(static/img/header3.jpg);  background-repeat: no-repeat; background-position: top;">
+					<!-- .caption -->
+					<div class="caption">
+						<div class="caption-outer">
+							<div class="header-text">
+								<h1 class="animated wow fadeInDown">Multipurpose Bootstrap Theme</h1>
+								<p class="animated wow fadeInRight">Unico Bootstrap is a fully responsive landing page template Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p> <a class="page-scroll" href="#about"><i class="fa fa-magnet" aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /.caption -->
+				</div>
+				<div class="item" style="background-image: url(static/img/header2.jpg);  background-repeat: no-repeat; background-position: top;">
+					<!-- .caption -->
+					<div class="caption">
+						<div class="caption-outer">
+							<div class="header-text">
+								<h1 class="animated wow fadeInDown">Multipurpose Bootstrap Theme</h1>
+								<p class="animated wow fadeInRight">Unico Bootstrap is a fully responsive landing page template Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p> <a class="page-scroll" href="#about"><i class="fa fa-magnet" aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /.caption -->
+				</div>
+				<!-- arrow -->
+				<a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+				<a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+				<!-- /arrow -->
+			</div>
+			<!-- /.home-slider -->
+		</div>
+	</header>
+	<!-- /START HEARDER SECTION -->
+	<!-- START ABOUT BG2 SECTION -->
+	<section id="about" class="section-padding about-bg2">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 wow fadeInDown" data-wow-delay="0.5s"> <img src="static/img/about-img.jpg" alt="about-img" /> </div>
+						<div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
+							<div class="title">
+								<h2>Unico High Quality And Clean Theme</h2> <strong>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</strong>
+								<p>Nam elementum eleifend diam a vulputate. Curabitur egestas nisl lacus, vitae ullamcorper lacus placerat eget. Sed tium vehicula tristique. Quisque vel metus Nam elementum eleifend diam a vulputate. Curabitur egestas nisl lacus, vitae ullamcorper lacus placerat eget. Sed tium vehicula tristique. Quisque vel metus. Nam elementum eleifend diam a vulputate. Curabitur egestas nisl lacus, vitae ullamcorper lacus placerat eget. </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /START ABOUT BG2 SECTION -->
+	<!-- ERROR MESSAGE SECTION -->
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+				{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+				{{ message }}
+			</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	<!-- /ERROR MESSAGE SECTION -->
+	<!-- main body SECTION -->
+	{% block app_content %}{% endblock %}
+	<!-- /main body SECTION -->
+	<!-- START FOOTER SECTION -->
+	<footer class="section-padding footer">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="footer-padding">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<h5>&nbsp;</h5>
+							<div class="socialfooter"> <a href="#" class="fac"><i class="fa fa-facebook"></i></a> <a href="#" class="twi"><i class="fa fa-twitter"></i></a> <a href="#" class="link"><i class="fa fa-linkedin"></i></a> <a href="#" class="goo"><i class="fa fa-google-plus"></i></a> <a href="#" class="behance"><i aria-hidden="true" class="fa fa-behance"></i></a> </div>
+							<div class="col-md-12 copyright">
+								<p>2017 &copy; Unico </p>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<h5>Quick Link</h5>
+							<ul class="list-unstyled">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="#">About</a></li>
+								<li><a href="#">FAQ</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<h5>Support</h5>
+							<ul class="list-unstyled">
+								<li><a href="#">Typography</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-6">
+							<h5>Contact</h5> <address>
+                              1352 The Mall Road, <br>
+                              Kanpur U.P 208001<br>                          
+                              E: <a href="mailto:#">info@yourdomain.com</a>  <br>
+                              P: (123) 456-7890
+                           </address> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /START FOOTER SECTION -->
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+	<!-- baguetteBox -->
+	<script src="{% static 'js/baguetteBox.js' %}" async></script>
+	<script src="{% static 'js/plugins.js' %}" async></script>
+	<!--  countTo JavaScript  -->
+	<script type="text/javascript" src="{% static 'js/jquery.countTo.js' %}"></script>
+	<!-- =============== owl carousel =============== -->
+	<script src="{% static 'owl-carousel/owl.carousel.js' %}"></script>
+	<script src="{% static 'js/wow.min.js' %}"></script>
+	<!--  Custom Theme JavaScript  -->
+	<script src="{% static 'js/custom.js' %}"></script>
+	<!--  Custom Theme filterizr  -->
+	<script src="{% static 'js/jquery.filterizr.min.js' %}"></script>
+	<script src="{% static 'js/controls.js' %}"></script>
+	<script src="{% static 'js/filterizr.min.js' %}"></script>
+</body>
+
+</html>
