@@ -13,8 +13,9 @@
   <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
 
   <title>Plain Content Sample Page</title>
-  <link rel="stylesheet" href="{% static 'css/theme.min.css' %}">
-
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <style>
     /* inter-300 - latin */
     @font-face {
@@ -75,41 +76,49 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#" aria-label="Brings you to the frontpage">
+			<li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}" aria-label="Brings you to the frontpage">
+              Home
+            </a>
+          </li>	          	
+			<li class="nav-item dropdown">
+			  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				About Us
+			  </a>
+			  <ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="{% url 'clinic' %}">Our Clinic</a></li>
+				<li><a class="dropdown-item" href="{% url 'dentists' %}">Dentists</a></li>
+				<li><a class="dropdown-item" href="{% url 'team' %}">Our Team</a></li>
+				<li><a class="dropdown-item" href="{% url 'testimonials' %}">Testimonials</a></li>
+				<li><hr class="dropdown-divider"></li>
+				<li><a class="dropdown-item" href="{% url 'directions' %}">Directions</a></li>
+			  </ul>
+			</li>		  
+		  <li class="nav-item">
+            <a class="nav-link" href="{% url 'services' %}" aria-label="Brings you to the frontpage">
               Services
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              About us
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Numbers
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'gallery' %}">
               Gallery
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Work with us
+            <a class="nav-link" href="{% url 'blog' %}">
+              Blog
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Testimonials
+            <a class="nav-link" href="{% url 'contact_us' %}">
+              Contact us
             </a>
           </li>
 
         </ul>
-        <a href="#" data-splitbee-event="Click Download" aria-label="Download this template"
+        <a href="{% url 'appointment' %}" data-splitbee-event="Click Download" aria-label="Download this template"
           class="link-dark pb-1 link-fancy me-2">
-          Download this Template <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          Make an appointment <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-download ms-1" viewBox="0 0 16 16">
             <path
               d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
