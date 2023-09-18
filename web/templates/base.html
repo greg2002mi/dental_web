@@ -116,6 +116,21 @@
           </li>
 
         </ul>
+				<div class="btn-header">
+				<form action="{% url 'set_language' %}" method="post">
+				  {% csrf_token %}
+				  <input name="next" type="hidden" value="{{ redirect_to }}" />
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+					{% for language in languages %}
+					  <button type="submit" name="language" value="{{ language.code }}"
+						class="btn btn-dark">
+						{{ language.code }}
+					  </button>|&nbsp;
+					{% endfor %}
+				</form>
+			  </div>
         <a href="{% url 'appointment' %}" data-splitbee-event="Click Download" aria-label="Download this template"
           class="link-dark pb-1 link-fancy me-2">
           Make an appointment <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    
+    path("index", views.index, name="index"),    
     # main navigation
     path("clinic/", views.clinic, name="clinic"),
     path("dentists/", views.dentists, name="dentists"),
