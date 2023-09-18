@@ -12,7 +12,7 @@ STATUS = (
     (1,"Processing"),
     (2,"Closed")
 )
-
+ 
 # Create your models here.
 
 class Home(models.Model):

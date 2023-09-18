@@ -25,7 +25,7 @@ from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetVie
 from io import BytesIO
 
 
-# Main Navigation.
+# Main Navigation. 
 def index(request):
     return render (request, "index.html", context={})
 
