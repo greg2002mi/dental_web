@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from django.contrib.auth.models import Group
 from .models import CustomUser
+from dental.models import BlogPost
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
@@ -68,3 +69,10 @@ def change_password(request):
 
     form = PasswordChangeForm(user)
     return render(request, 'password_change_form.html', {'form': form})  
+
+
+
+# acquisition of profile photo
+def user_profile(request, iid):
+    post = BlogPost.objects.filter(id=iid)
+    return render(request, "user_profile.html", {'post':post})

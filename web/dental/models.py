@@ -12,6 +12,15 @@ STATUS = (
     (1,"Processing"),
     (2,"Closed")
 )
+
+ROLE = (
+    (0,"Undefined"),
+    (11,"Dentist"),
+    (51,"Hygienist"),
+    (91,"Intern"),
+    (100,"Inactive")
+)
+ 
  
 # Create your models here.
 
@@ -55,40 +64,45 @@ class Reservation(models.Model):
 
     
 # services    
+class ServiceCat(models.Model):
+    title = models.CharField(max_length=255)
+
 
 class Service(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
     short = models.TextField()
-
-class ServiceDetails(models.Model):
-    category = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True, related_name='details')
+    category = models.ForeignKey(ServiceCat, on_delete=models.SET_NULL, null=True, blank=True, related_name='service')
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    content = CKEditor5Field('Content', config_name='extends', blank=True)
+    content = CKEditor5Field(_('Content'), config_name='extends', blank=True)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
-    
+   
     
 # team
 class Team(models.Model):
-    description = CKEditor5Field('Content', config_name='extends', blank=True)
+    description = CKEditor5Field(_('Content'), config_name='extends', blank=True)
     image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
 
 class Staff(models.Model):
     name = models.CharField(max_length=255)
     speciality = models.CharField(max_length=255)
-    bio = CKEditor5Field('Content', config_name='extends', blank=True)
+    staff = models.IntegerField(choices=ROLE, default=0)
+    bio = CKEditor5Field(_('Content'), config_name='extends', blank=True)
     updated_on = models.DateTimeField(auto_now= True)
     created_on = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
-       
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True, related_name='more')   
 # blog    
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.title
 
 class Contact_us(models.Model):
-    title = CKEditor5Field('Content', config_name='extends', blank=True)
+    title = CKEditor5Field(_('Content'), config_name='extends', blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -98,12 +112,12 @@ class BlogPost(models.Model):
     author= models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     slug=AutoSlugField(populate_from='title')
     short = models.TextField()
-    content=CKEditor5Field('Content', config_name='extends', blank=True)
+    content=CKEditor5Field(_('Content'), config_name='extends', blank=True)
     image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
     dateTime=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return str(self.author.first_name) +  " Blog Title: " + self.title
+        return str(self.author.first_name) +  _(" Blog Title: ") + self.title
     
     def get_absolute_url(self):
         return reverse('blogs')
@@ -119,13 +133,13 @@ class Comment(models.Model):
     content = models.TextField()
     blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
-    dateTime=models.DateTimeField(default=timezone.now)
+    dateTime = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering=['-dateTime']    
 
     def __str__(self):
-        return self.user.first_name +  " Comment: " + self.content
+        return self.user.first_name +  _(" Comment: ") + self.content
     
     @property
     def children(self):
@@ -147,11 +161,13 @@ class FAQ(models.Model):
     category = models.ForeignKey(FAQCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name='FAQ')
     author= models.CharField(max_length=255)
     slug=AutoSlugField(populate_from='title')
+    is_read = models.BooleanField(default=False)
+    status = models.IntegerField(choices=STATUS, default=0)
     content = models.TextField()
     dateTime=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return str(self.author) +  " Blog Title: " + self.title
+        return str(self.author) +  _(" Blog Title: ") + self.title
     
     @property
     def is_sorted(self):
@@ -169,4 +185,4 @@ class FAQComment(models.Model):
         ordering=['-dateTime']    
 
     def __str__(self):
-        return self.user.first_name +  " Comment: " + self.content
+        return self.user.first_name +  _(" Comment: ") + self.content

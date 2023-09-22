@@ -3,94 +3,102 @@
 {% load static %}
 
 {% block head_js %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+<link rel="stylesheet" src="{% static '/datatables/datatables_style.css' %}"></link>
 
+<style>
+.link-fancy-dark {
+  color: #e0e0e0;
+  text-decoration: none;
+  display: inline-block;
+  position: relative; }
+
+.link-fancy-dark:hover {
+    color: #f5faff;
+</style>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#filterblog').DataTable({
+        "columnDefs": [
+            { "orderable": false, "targets": [] } // Disable sorting for columns 4, and 5
+        ]
+    });
+});
+
+</script>
 {% endblock %}
 
 {% block app_content %}
 {% load crispy_forms_tags %}  
 
-    <div class="py-vh-5 w-100 overflow-hidden" id="services">
+    <div class="py-vh-5 w-100 overflow-hidden" id="blog">
       <div class="container">
         <div class="row d-flex justify-content-end">
           <div class="col-lg-8" data-aos="fade-down">
-            <h2 class="display-6">Okay, there are three really good reasons for us. There are no more than three, but we
-              think three is a reasonable good number of good stuff.</h2>
+            <h2 class="display-6">{% translate "Blog section" %}</h2>
           </div>
         </div>
-        <div class="row d-flex align-items-center">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <span class="h5 fw-lighter">01.</span>
-            <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
+	  </div>
+	</div>
+    <div class="row d-flex justify-content-end">
+		<div class="col-lg-8" data-aos="fade-down">
+			<h4 class="display-7">{% translate "Recent publications:" %}</h4>
+		</div>
+	</div>
+	<div class="py-vh-5 w-100 overflow-hidden" id="services">
+      <div class="container">       
+    {% for group in gr_blog %}
+		<div class="row d-flex align-items-center">
+		{% for post in group %}
+		<div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ post.delay }}">
+            <span class="h5 fw-lighter">{{ forloop.counter }}.</span>
+            <h3 class="py-5 border-top border-dark">{{ post.title }}</h3>
+            <p>{{ post.short }}</p>
+            <a href="{% url 'blog_details' blogid=post.id  %}" class="link-fancy">Learn more
             </a>
           </div>
-
-          <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-            <span class="h5 fw-lighter">02.</span>
-            <h3 class="py-5 border-top border-dark">We don´t know exactly what we are doing. But thats good because we
-              can´t break something intentionally.</h3>
-            <p>Lorem, ipsum dolor sit adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a consequatur
-              inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis corrupti
-              deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4 py-vh-6 pb-0" data-aos="fade-up" data-aos-delay="600">
-            <span class="h5 fw-lighter">03.</span>
-            <h3 class="py-5 border-top border-dark">There is no real number three reason. So please read again number
-              one and two.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
-          </div>
+		 {% endfor %}
         </div>
+	{% endfor %}
+      </div>
+    </div>
+	<div class="py-vh-6 bg-gray-900 text-light w-100 overflow-hidden" id="workwithus">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8 text-center" data-aos="fade">
+              <!--<p class="text-secondary lead">{% translate "All publications:" %}</p>-->
+              <h2 class="display-6 mb-5">{% translate "All publications:" %}</h2>
+            </div>
+            <div class="col-12">
+              <table class="table table-responsive text-nowrap" style="" id="filterblog">
+				<thead>
+					<tr class="table-dark">
+					  <th scope="col">#</th>
+					  <th scope="col">{% translate "Blog title" %}</th>
+					  <th scope="col">{% translate "Author" %}</th>
+					  <th scope="col">{% translate "Publication date" %}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for bl in blogs %}
+					<tr class="table-dark">
+					  <th scope="row">{{ forloop.counter }}</th>
+					  <td><a href="{% url 'blog_details' blogid=bl.id  %}" class="link-fancy-dark">{{ bl.title }}</a></td>
+					  <td>{{ bl.author }}</td>
+					  <td>{{ bl.dateTime }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			  </table>
+            </div>
+          </div>
 
+        </div>
       </div>
     </div>
 
-    <div class="py-vh-4 bg-gray-100 w-100 overflow-hidden" id="aboutus">
-      <div class="container">
-
-		<div class="row d-flex align-items-center">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <span class="h5 fw-lighter">01.</span>
-            <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-            <span class="h5 fw-lighter">02.</span>
-            <h3 class="py-5 border-top border-dark">We don´t know exactly what we are doing. But thats good because we
-              can´t break something intentionally.</h3>
-            <p>Lorem, ipsum dolor sit adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a consequatur
-              inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis corrupti
-              deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4 py-vh-6 pb-0" data-aos="fade-up" data-aos-delay="600">
-            <span class="h5 fw-lighter">03.</span>
-            <h3 class="py-5 border-top border-dark">There is no real number three reason. So please read again number
-              one and two.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
-          </div>
-        </div>
-        </div>
 
       </div>
     </div>

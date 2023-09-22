@@ -8,68 +8,93 @@
 
 {% block app_content %}
 {% load crispy_forms_tags %}  
-    <div class="w-100 overflow-hidden bg-gray-100" id="top">
-
-      <div class="container position-relative">
-        <div class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover" data-aos="fade-left"
+<div class="w-100 overflow-hidden bg-gray-100" id="top">
+  <div class="container position-relative">
+    <div class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover" data-aos="fade-left"
           style="background-image: url({% static 'img/webp/interior11.webp' %});">
 
-        </div>
-        <div class="row">
-
-          <div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
-            <h1 class="display-1 fw-bold mt-5">Sell more useless stuff faster!</h1>
-            <p class="lead">To be honest, this is just a stupid placeholder text. We don´t know how to sell anything,
-              not even lesser or slower as you.</p>
-            <a href="#" class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5">Get started free</a>
-          </div>
-
-
-
-        </div>
-      </div>
-
     </div>
-
-    <div class="py-vh-5 w-100 overflow-hidden" id="services">
+	<div class="row">
+	  <h2 class="py-5 fw-bold mt-5" data-aos="fade-right" style="position: relative; z-index: 1;">{{blog.title}}</h2>
+      <br>
+	  <div class="media">
+            {% if blog.author.avatar %}
+            <img class="mr-3 rounded-circle" src="{{blog.author.avatar.url}}" width="50px" height="50px"
+                  alt="image">
+            {% endif %}
+	  </div>
+	<div class="media-body">
+		  <h5 class="mt-0"><a href="/user_profile/{{blog.author.id}}/" class="link-fancy">{{blog.author}}</a>&nbsp;&nbsp;&nbsp;
+					  {% if user.is_authenticated %}
+					  {% if user.id == blog.author.id %}
+					  <small><a href="{% url 'blog_e' slug=blog.slug %}" class="edit btn btn-warning">Edit Blog Post</a></small>
+					  {% endif %}
+					  {% endif %}
+				</a></h5>
+		  {{blog.dateTime}}
+	</div>
+    </div>
+  </div>
+</div>
+	 <div class="py-vh-5 w-100 overflow-hidden" id="blog">
+	 <div class="container">
+      <br>
+      {% if blog.image %}
+	  <img src="{{post.image.url}}" alt="" height="250px" width="500px">
+	  {% endif %}
+      <br>
+      <p>{{blog.content|safe}}.</p>
+      <hr>
+      {% if user.is_authenticated %}
       <div class="container">
-            <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			 <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-			  <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-          </div>
+            <h2>Add Comments Here</h2>
+            <form action="/blog/{{blog.slug}}/" method="POST"> 
+				{% csrf_token %}
+                  <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                              style="height: 100px" id="content" name="content"></textarea>
+                        <label for="floatingTextarea2">Leave a comment here.</label>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                  </div>
+            </form>
+        {% else %}
+            <div class="container">
+                  <h4><a href="/login/">Login</a> to post comments below.</h4>
+        {% endif %}
+                  <br>
+                  <h2>All Comments ({{comments.count}})</h2>
+                  <br>
+                  {% for comment in comments %}
+					{% if comment.is_parent %}
+						  <div class="card">
+								<div class="card-header">
+									  <span style="font-size: 22px;">{{comment.user}} </span> 
+									  <span style="font-size: 12px;">{{comment.dateTime}}</span>
+								</div>
+								<div class="card-body">
+									  <h6 class="card-text">{{comment.content}}</h6>
+									         &nbsp; &nbsp; &nbsp;
+									 <form action="" method="POST" id="main_form" class="comment_form">
+										<div>
+											&nbsp; &nbsp; &nbsp;<label for="comment">Reply here</label>
+										   &nbsp; &nbsp; &nbsp;<input type="text" name="content"> <input type="hidden" value="{{ comment.pk }}" name="parent"> {% csrf_token %} <input type="submit" value="Post">
+										</div>
+									 </form>  
+								</div>
+						  </div>
+                  <br>
+				  {% endif %} 
+         
+					 {% for replies in comment.children %}
+						<h6>&nbsp; &nbsp; &nbsp; <b>{{ comment.user }} : </b> {{ replies.content }}</h6>
+					 {% endfor %}
+                  {% endfor %}
+            </div>
+		</div>
+	</div>
+</div>
+	
 
  
 

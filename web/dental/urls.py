@@ -17,7 +17,16 @@ urlpatterns = [
     path("service_details/", views.service_details, name="service_details"),
     path("gallery/", views.gallery, name="gallery"),
     path("blog/", views.blog, name="blog"),
-    path("blog_details/", views.blog_details, name="blog_details"),
+    path("allblogs/", views.allblogs, name="allblogs"),
+    path("blog_n/", views.blog_n, name="blog_n"),
+    path("blog_d/", views.blog_d, name="blog_d"),
+    path("blog_e/<str:slug>", views.blog_e, name="blog_e"),
+    path("blog_category/", views.blog_category, name="blog_category"),
+    path("blog_category_n/", views.blog_category_n, name="blog_category_n"),
+    path("blog_category_d/", views.blog_category_d, name="blog_category_d"),
+    path("blog_category_e/", views.blog_category_e, name="blog_category_e"),
+    path("blog_details/<int:blogid>", views.blog_details, name="blog_details"),
+    
     path("contact_us/", views.contact_us, name="contact_us"),
 
     
@@ -27,5 +36,5 @@ urlpatterns = [
     
     
     # admin
-    
+    path("adminpanel/", views.adminpanel, name="adminpanel"),
     ]
