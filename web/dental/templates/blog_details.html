@@ -27,7 +27,7 @@
 		  <h5 class="mt-0"><a href="/user_profile/{{blog.author.id}}/" class="link-fancy">{{blog.author}}</a>&nbsp;&nbsp;&nbsp;
 					  {% if user.is_authenticated %}
 					  {% if user.id == blog.author.id %}
-					  <small><a href="{% url 'blog_e' slug=blog.slug %}" class="edit btn btn-warning">Edit Blog Post</a></small>
+					  <small><a href="{% url 'blog_e' slug=blog.slug %}" class="edit btn btn-warning">Edit Blog Post</a></small> <small><a href="{% url 'blog_d' slug=blog.slug %}" class="edit btn btn-danger">Delete</a></small>
 					  {% endif %}
 					  {% endif %}
 				</a></h5>
@@ -37,7 +37,7 @@
   </div>
 </div>
 	 <div class="py-vh-5 w-100 overflow-hidden" id="blog">
-	 <div class="container">
+	 <div class="container ck-content">
       <br>
       {% if blog.image %}
 	  <img src="{{post.image.url}}" alt="" height="250px" width="500px">

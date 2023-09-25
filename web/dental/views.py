@@ -7,7 +7,7 @@ Paginator)
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 from .models import Home, Global, Gallery, Reservation, Service, ServiceCat, Team, Staff, Category, Contact_us, BlogPost, Comment, FAQCategory, FAQ, FAQComment
-from .forms import NewBlogCatForm, EditBlogForm
+from .forms import NewBlogCatForm, EditBlogForm, BlogPostForm
 from users.models import CustomUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -103,7 +103,19 @@ def allblogs(request):
 
 @login_required
 def blog_n(request):
-    return render (request, "blog.html", context={})
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST)
+        if form.is_valid(): 
+            blog = form.save(commit=False)
+            blog.author = request.user
+            blog.save()
+            messages.success(request, _("Your blog is on air."))
+            return redirect('blog_details', blog.id)
+    else:
+        context={
+            'form': BlogPostForm(),
+            }
+    return render (request, "blog_n.html", context)
 
 @login_required
 def blog_e(request, slug):
@@ -122,7 +134,7 @@ def blog_e(request, slug):
     return render (request, "blog_e.html", context)
 
 @login_required
-def blog_d(request):
+def blog_d(request, slug):
     return render (request, "blog.html", context={})
 
 @login_required

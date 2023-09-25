@@ -33,7 +33,7 @@
   --bs-info: #0dcaf0;
   --bs-warning: #fd7e14;
   --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
+  --bs-light: #363636; /* #f8f9fa  - this color affects ckeditor5's content text color*/ 
   --bs-dark: #343a40;
   --bs-primary-rgb: 21, 21, 21;
   --bs-secondary-rgb: 108, 117, 125;
@@ -70,7 +70,9 @@
   --bs-link-color: #151515;
   --bs-link-hover-color: #111111;
   --bs-code-color: #d63384;
-  --bs-highlight-bg: #fff3cd; }
+  --bs-highlight-bg: #fff3cd; 
+  
+  }
 
 *,
 *::before,
@@ -6550,10 +6552,11 @@ textarea.form-control-lg {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important; }
 
-.text-light {
+/*
+......text-light {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important; }
-
+*/
 .text-dark {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important; }

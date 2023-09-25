@@ -156,6 +156,11 @@ EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.environ["SENDGRID_API_KEY"]
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
+
+# path to the custom CSS file
+CKEDITOR_5_CUSTOM_CSS = 'ckeditor5/admin_dark_mode_fix.css'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
